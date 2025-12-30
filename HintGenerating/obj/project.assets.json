@@ -2,16 +2,6 @@
   "version": 3,
   "targets": {
     "net8.0": {
-      "FileOperations/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/FileOperations.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/FileOperations.dll": {}
-        }
-      },
       "game/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -35,11 +25,6 @@
     }
   },
   "libraries": {
-    "FileOperations/1.0.0": {
-      "type": "project",
-      "path": "../FileOperations/FileOperations.csproj",
-      "msbuildProject": "../FileOperations/FileOperations.csproj"
-    },
     "game/1.0.0": {
       "type": "project",
       "path": "../game/game.csproj",
@@ -53,7 +38,6 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "FileOperations >= 1.0.0",
       "LLM >= 1.0.0",
       "game >= 1.0.0"
     ]
@@ -65,11 +49,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\OneDrive\\Studia\\Rok 2\\Semestr 3\\Inzynieria Oprogramowania\\Kodowanie\\DoDev\\HintGenerating\\HintGenerating.csproj",
+      "projectUniqueName": "C:\\Users\\igorz\\Documents\\GitHub\\ReadyCode_AI\\HintGenerating\\HintGenerating.csproj",
       "projectName": "HintGenerating",
-      "projectPath": "D:\\OneDrive\\Studia\\Rok 2\\Semestr 3\\Inzynieria Oprogramowania\\Kodowanie\\DoDev\\HintGenerating\\HintGenerating.csproj",
+      "projectPath": "C:\\Users\\igorz\\Documents\\GitHub\\ReadyCode_AI\\HintGenerating\\HintGenerating.csproj",
       "packagesPath": "C:\\Users\\igorz\\.nuget\\packages\\",
-      "outputPath": "D:\\OneDrive\\Studia\\Rok 2\\Semestr 3\\Inzynieria Oprogramowania\\Kodowanie\\DoDev\\HintGenerating\\obj\\",
+      "outputPath": "C:\\Users\\igorz\\Documents\\GitHub\\ReadyCode_AI\\HintGenerating\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -91,14 +75,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\OneDrive\\Studia\\Rok 2\\Semestr 3\\Inzynieria Oprogramowania\\Kodowanie\\DoDev\\FileOperations\\FileOperations.csproj": {
-              "projectPath": "D:\\OneDrive\\Studia\\Rok 2\\Semestr 3\\Inzynieria Oprogramowania\\Kodowanie\\DoDev\\FileOperations\\FileOperations.csproj"
+            "C:\\Users\\igorz\\Documents\\GitHub\\ReadyCode_AI\\game\\game.csproj": {
+              "projectPath": "C:\\Users\\igorz\\Documents\\GitHub\\ReadyCode_AI\\game\\game.csproj"
             },
-            "D:\\OneDrive\\Studia\\Rok 2\\Semestr 3\\Inzynieria Oprogramowania\\Kodowanie\\DoDev\\game\\game.csproj": {
-              "projectPath": "D:\\OneDrive\\Studia\\Rok 2\\Semestr 3\\Inzynieria Oprogramowania\\Kodowanie\\DoDev\\game\\game.csproj"
-            },
-            "D:\\OneDrive\\Studia\\Rok 2\\Semestr 3\\Inzynieria Oprogramowania\\Kodowanie\\DoDev\\LLM\\LLM.csproj": {
-              "projectPath": "D:\\OneDrive\\Studia\\Rok 2\\Semestr 3\\Inzynieria Oprogramowania\\Kodowanie\\DoDev\\LLM\\LLM.csproj"
+            "C:\\Users\\igorz\\Documents\\GitHub\\ReadyCode_AI\\LLM\\LLM.csproj": {
+              "projectPath": "C:\\Users\\igorz\\Documents\\GitHub\\ReadyCode_AI\\LLM\\LLM.csproj"
             }
           }
         }

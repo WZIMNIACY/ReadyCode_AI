@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\OneDrive\\Studia\\Rok 2\\Semestr 3\\Inzynieria Oprogramowania\\Kodowanie\\DoDev\\game\\game.csproj": {}
+    "C:\\Users\\igorz\\Documents\\GitHub\\ReadyCode_AI\\game\\game.csproj": {}
   },
   "projects": {
-    "D:\\OneDrive\\Studia\\Rok 2\\Semestr 3\\Inzynieria Oprogramowania\\Kodowanie\\DoDev\\game\\game.csproj": {
+    "C:\\Users\\igorz\\Documents\\GitHub\\ReadyCode_AI\\game\\game.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\OneDrive\\Studia\\Rok 2\\Semestr 3\\Inzynieria Oprogramowania\\Kodowanie\\DoDev\\game\\game.csproj",
+        "projectUniqueName": "C:\\Users\\igorz\\Documents\\GitHub\\ReadyCode_AI\\game\\game.csproj",
         "projectName": "game",
-        "projectPath": "D:\\OneDrive\\Studia\\Rok 2\\Semestr 3\\Inzynieria Oprogramowania\\Kodowanie\\DoDev\\game\\game.csproj",
+        "projectPath": "C:\\Users\\igorz\\Documents\\GitHub\\ReadyCode_AI\\game\\game.csproj",
         "packagesPath": "C:\\Users\\igorz\\.nuget\\packages\\",
-        "outputPath": "D:\\OneDrive\\Studia\\Rok 2\\Semestr 3\\Inzynieria Oprogramowania\\Kodowanie\\DoDev\\game\\obj\\",
+        "outputPath": "C:\\Users\\igorz\\Documents\\GitHub\\ReadyCode_AI\\game\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
