@@ -27,7 +27,7 @@ namespace hints
             this.Cards = cards;
         }
 
-        public async static Task<Hint> Create(Deck deck, ILLM llm, Team nowTour)
+        public async static Task<Hint> Create(Deck deck, ILLM llm, Team nowTour, List<string> createdHints)
         {
             //Prompt set up
             string _nowTour = nowTour.ToString();
@@ -51,7 +51,8 @@ namespace hints
 
             string userPromptHint = $"" +
                 $"_nowTour = {_nowTour}\n" +
-                $"_actualDeck = {_actualDeck}";
+                $"_actualDeck = {_actualDeck}" +
+                $"_createdHints = {createdHints}";
 
             //Genereting hint
             while (true)
@@ -135,6 +136,18 @@ namespace hints
             return $"{Word} | {NoumberOfSimilarWords}";
         }
 
+        public string listToString(List<string> list)
+        {
+            StringBuilder sb = new();
+            
+
+            foreach (string item in list)
+            {
+                sb.AppendLine(item);
+            }
+
+            return sb.ToString();
+        }
 
         [Serializable]
         public class HintException : Exception
