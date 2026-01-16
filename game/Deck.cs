@@ -27,6 +27,11 @@ namespace game
         {
         }
 
+        public Deck(List<Card> cards)
+        {
+            Cards = cards;
+        }
+
         public static Deck CreateFromDictionary(Dictionary<string, List<double>> dictionary, Team startingTeam, Random? rng = null)
         {
             if (dictionary is null)
