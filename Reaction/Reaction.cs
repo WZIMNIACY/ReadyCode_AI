@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using game;
+using System.Reflection;
 using hints;
 using System.Runtime.CompilerServices;
 using AI;
