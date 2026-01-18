@@ -30,7 +30,6 @@ namespace Reaction
             {
                 if (stream == null)
                 {
-                    printFn("Coundn't found embeded res");
                     throw new FileNotFoundException("Couldn't find embeded resource");
                 }
 
