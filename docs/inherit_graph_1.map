@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$interfaceAI_1_1ILLM.html" title="Abstraction for language model clients capable of chat completion." alt="" coords="5,31,75,57"/>
+<area shape="rect" id="node2" href="$classAI_1_1DeepSeekLLM.html" title="Client wrapper for the DeepSeek chat completion API." alt="" coords="123,5,253,32"/>
+<area shape="rect" id="node3" href="$classAI_1_1LocalLLM.html" title="Lightweight client for locally hosted OpenAI&#45;compatible chat servers." alt="" coords="139,56,237,83"/>
+</map>

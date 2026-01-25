@@ -1,0 +1,4 @@
+<map id="AI.DeepSeekLLM" name="AI.DeepSeekLLM">
+<area shape="rect" id="node1" title="Client wrapper for the DeepSeek chat completion API." alt="" coords="5,80,136,107"/>
+<area shape="rect" id="node2" href="$interfaceAI_1_1ILLM.html" title="Abstraction for language model clients capable of chat completion." alt="" coords="45,5,97,32"/>
+</map>

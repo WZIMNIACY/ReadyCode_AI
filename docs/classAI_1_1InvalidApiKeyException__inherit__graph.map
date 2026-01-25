@@ -1,0 +1,4 @@
+<map id="AI.InvalidApiKeyException" name="AI.InvalidApiKeyException">
+<area shape="rect" id="node1" title="Raised when the provided API key is invalid." alt="" coords="5,80,197,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="58,5,145,32"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" title=" " alt="" coords="5,132,92,159"/>
+<area shape="rect" id="node2" href="$classAI_1_1ApiException.html" title="General&#45;purpose API failure wrapper." alt="" coords="174,5,298,32"/>
+<area shape="rect" id="node3" href="$classAI_1_1InvalidApiKeyException.html" title="Raised when the provided API key is invalid." alt="" coords="140,56,332,83"/>
+<area shape="rect" id="node4" href="$classAI_1_1NoInternetException.html" title="Raised when the client cannot reach the LLM service." alt="" coords="150,107,322,133"/>
+<area shape="rect" id="node5" href="$classAI_1_1NoTokensException.html" title="Raised when billing or quota prevents further requests." alt="" coords="153,157,319,184"/>
+<area shape="rect" id="node6" href="$classAI_1_1RateLimitException.html" title="Raised when too many requests are sent to the service." alt="" coords="153,208,319,235"/>
+<area shape="rect" id="node7" href="$classhints_1_1Hint_1_1HintException.html" title="Raised when hint creation or parsing fails." alt="" coords="146,259,326,285"/>
+</map>

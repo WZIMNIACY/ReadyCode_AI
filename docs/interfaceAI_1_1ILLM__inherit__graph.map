@@ -1,0 +1,5 @@
+<map id="AI.ILLM" name="AI.ILLM">
+<area shape="rect" id="node1" title="Abstraction for language model clients capable of chat completion." alt="" coords="105,5,175,32"/>
+<area shape="rect" id="node2" href="$classAI_1_1DeepSeekLLM.html" title="Client wrapper for the DeepSeek chat completion API." alt="" coords="5,80,136,107"/>
+<area shape="rect" id="node3" href="$classAI_1_1LocalLLM.html" title="Lightweight client for locally hosted OpenAI&#45;compatible chat servers." alt="" coords="160,80,259,107"/>
+</map>
