@@ -5,16 +5,31 @@ using hints;
 
 namespace AIPlayer
 {
+    /// <summary>
+    /// AI-controlled player that selects cards based on generated hints.
+    /// </summary>
     public class LLMPlayer
     {
         private readonly ILLM _llm;
 
+        /// <summary>
+        /// Initializes the AI player with a language model client.
+        /// </summary>
+        /// <param name="llm">Language model used to evaluate hints.</param>
         public LLMPlayer(ILLM llm)
         {
             _llm = llm;
         }
 
         //AI player get Deck and hint, returns card which is his pick
+        /// <summary>
+        /// Chooses a card from the provided deck using the given hint via LLM reasoning.
+        /// </summary>
+        /// <param name="deck">Current deck to choose from.</param>
+        /// <param name="hint">Hint guiding the selection.</param>
+        /// <param name="tests">Enables verbose logging when true.</param>
+        /// <returns>Card chosen by the model.</returns>
+        /// <exception cref="FileNotFoundException">Embedded prompt resource is missing.</exception>
         public async Task<Card> PickCardFromDeck(Deck deck, Hint hint, bool tests = false)
         {
             var assembly = Assembly.GetExecutingAssembly();

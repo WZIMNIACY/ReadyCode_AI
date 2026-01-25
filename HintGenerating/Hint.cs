@@ -8,18 +8,37 @@ using System.Text;
 
 namespace hints
 {
+    /// <summary>
+    /// Represents a single hint produced by an LLM with associated card suggestions.
+    /// </summary>
     [Serializable]
     public sealed class Hint
     {
+        /// <summary>
+        /// Suggested hint word.
+        /// </summary>
         [JsonPropertyName("Word")]
         public string Word { get; set; }
+
+        /// <summary>
+        /// Number of similar words the hint is intended to cover.
+        /// </summary>
         [JsonPropertyName("NOSW")]
         public int NoumberOfSimilarWords { get; set; }
 
+        /// <summary>
+        /// Cards the hint should relate to.
+        /// </summary>
         [JsonPropertyName("Cards")]
         public List<Card>? Cards { get; set; }
 
         [JsonConstructor]
+        /// <summary>
+        /// Initializes a hint instance.
+        /// </summary>
+        /// <param name="word">Hint keyword.</param>
+        /// <param name="cards">Optional linked cards.</param>
+        /// <param name="noumberOfSimilarWords">Number of similar words indicated by the hint.</param>
         public Hint(string word, List<Card>? cards, int noumberOfSimilarWords)
         {
             this.Word = word;
@@ -27,6 +46,17 @@ namespace hints
             this.Cards = cards;
         }
 
+        /// <summary>
+        /// Generates a valid hint for the given deck and turn using an LLM, retrying until constraints are met.
+        /// </summary>
+        /// <param name="deck">Current deck state.</param>
+        /// <param name="llm">Language model used to generate hints.</param>
+        /// <param name="nowTour">Team taking the current turn.</param>
+        /// <param name="previousHints">History of prior hints to avoid repeats.</param>
+        /// <param name="maxTokens">Maximum tokens allowed in the model response.</param>
+        /// <param name="testMode">Whether to log rejected hints for debugging.</param>
+        /// <returns>Validated hint ready for play.</returns>
+        /// <exception cref="FileNotFoundException">Embedded prompt resource is missing.</exception>
         public async static Task<Hint> Create(Deck deck, ILLM llm, Team nowTour, List<string> previousHints, uint maxTokens = 256, bool testMode = false)
         {
 
@@ -122,6 +152,11 @@ namespace hints
             }
         }
 
+        /// <summary>
+        /// Serializes the hint to indented JSON.
+        /// </summary>
+        /// <returns>JSON string representation.</returns>
+        /// <exception cref="HintException">Serialization fails or produces empty output.</exception>
         public string toJson()
         {
             JsonSerializerOptions options = new JsonSerializerOptions();
@@ -136,6 +171,12 @@ namespace hints
                 return json;
         }
 
+            /// <summary>
+            /// Deserializes a hint from potentially noisy JSON text.
+            /// </summary>
+            /// <param name="jsonFormat">Raw JSON payload containing a hint object.</param>
+            /// <returns>Deserialized <see cref="Hint"/>.</returns>
+            /// <exception cref="HintException">Input is invalid or cannot be parsed.</exception>
         public static Hint FromJson(string jsonFormat)
         {
             if (string.IsNullOrWhiteSpace(jsonFormat))
@@ -176,11 +217,19 @@ namespace hints
                 return hint;
         }
 
+        /// <summary>
+        /// Displays hint word with its similar word count.
+        /// </summary>
         public override string ToString()
         {
             return $"{Word} | {NoumberOfSimilarWords}";
         }
 
+        /// <summary>
+        /// Converts a list of strings to a newline-separated representation.
+        /// </summary>
+        /// <param name="list">List to render.</param>
+        /// <returns>Single string with each entry on its own line.</returns>
         public string listToString(List<string> list)
         {
             StringBuilder sb = new();
@@ -195,6 +244,9 @@ namespace hints
         }
 
         [Serializable]
+        /// <summary>
+        /// Raised when hint creation or parsing fails.
+        /// </summary>
         public class HintException : Exception
         {
             public HintException() { }

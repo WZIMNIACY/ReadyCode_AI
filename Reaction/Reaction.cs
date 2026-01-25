@@ -9,9 +9,23 @@ using AI;
 namespace Reaction
 {
 
+    /// <summary>
+    /// Generates narrative reactions to a guessed card using an LLM.
+    /// </summary>
     public static class Reaction
     {
 
+        /// <summary>
+        /// Creates a formatted reaction message for a guessed card, retrying on empty output.
+        /// </summary>
+        /// <param name="llm">Language model used to generate the reaction.</param>
+        /// <param name="hint">Hint that led to the guess.</param>
+        /// <param name="pickedCard">Card selected by the player.</param>
+        /// <param name="KapitnBomba">If true, uses the Kapitan Bomba themed prompt.</param>
+        /// <param name="actualTour">Team currently taking the turn.</param>
+        /// <returns>Trimmed JSON string returned by the LLM.</returns>
+        /// <exception cref="FileNotFoundException">Prompt resource is missing.</exception>
+        /// <exception cref="ReactionException">Maximum regeneration attempts exceeded.</exception>
         public static async Task<string> create(ILLM llm, Hint hint, Card pickedCard, bool KapitnBomba, Team actualTour)
         {
             string reaction = string.Empty;
@@ -79,6 +93,9 @@ namespace Reaction
         }
 
         [System.Serializable]
+        /// <summary>
+        /// Raised when a valid reaction cannot be produced within retry limits.
+        /// </summary>
         public class ReactionException : System.Exception
         {
             public ReactionException() { }

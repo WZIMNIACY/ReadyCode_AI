@@ -10,29 +10,56 @@ using System.Text.Json.Serialization;
 namespace game
 {
 
+    /// <summary>
+    /// Team assignments available for cards within a deck.
+    /// </summary>
     public enum Team
     {
+        /// <summary>Blue team card.</summary>
         Blue,
+        /// <summary>Red team card.</summary>
         Red,
+        /// <summary>Neutral card that scores no team.</summary>
         Neutral,
+        /// <summary>Assassin card that ends the game.</summary>
         Assassin
     }
 
+    /// <summary>
+    /// Represents a deck of 25 cards used for gameplay.
+    /// </summary>
     public sealed class Deck
     {
+        /// <summary>
+        /// All cards contained in this deck instance.
+        /// </summary>
         public List<Card> Cards { get; init; } = new List<Card>();
+
+        /// <summary>
+        /// Team that starts the round and has the extra card.
+        /// </summary>
         public Team StartingTeam { get; init; }
 
         private Deck()
         {
         }
 
+        /// <summary>
+        /// Creates a deck with predefined cards and starting team.
+        /// </summary>
+        /// <param name="cards">Collection of cards to include.</param>
+        /// <param name="startingTeam">Team that begins play.</param>
         public Deck(List<Card> cards, Team startingTeam)
         {
             Cards = cards;
             StartingTeam = startingTeam;
         }
 
+        /// <summary>
+        /// Loads the embedded <c>WordVectorBase.txt</c> resource and converts it to a dictionary.
+        /// </summary>
+        /// <returns>Dictionary mapping words to vector embeddings.</returns>
+        /// <exception cref="InvalidOperationException">Resource is missing or cannot be deserialized.</exception>
         public static Dictionary<string, List<double>> CreateDictionary()
         {
             var assembly = typeof(Deck).Assembly;
@@ -66,6 +93,15 @@ namespace game
         }
         
 
+        /// <summary>
+        /// Builds a randomized deck from a dictionary of word embeddings.
+        /// </summary>
+        /// <param name="dictionary">Word vectors to sample from; must contain at least 25 entries.</param>
+        /// <param name="startingTeam">Team that takes the first turn.</param>
+        /// <param name="rng">Optional random number generator for reproducibility.</param>
+        /// <returns>New deck with shuffled cards and assignments.</returns>
+        /// <exception cref="ArgumentNullException">Dictionary is null.</exception>
+        /// <exception cref="ArgumentException">Dictionary contains fewer than 25 entries.</exception>
         public static Deck CreateFromDictionary(Dictionary<string, List<double>> dictionary, Team startingTeam, Random? rng = null)
         {
             if (dictionary is null)
@@ -128,12 +164,22 @@ namespace game
             };
         }
 
+        /// <summary>
+        /// Serializes the deck to JSON including card contents.
+        /// </summary>
+        /// <returns>Compact JSON string.</returns>
         public string ToJson()
         {
             var options = CreateJsonOptions();
             return JsonSerializer.Serialize(this, options);
         }
 
+        /// <summary>
+        /// Deserializes a deck from its JSON representation.
+        /// </summary>
+        /// <param name="json">Serialized deck.</param>
+        /// <returns>Hydrated <see cref="Deck"/>.</returns>
+        /// <exception cref="InvalidOperationException">Input is null/whitespace or cannot be parsed.</exception>
         public static Deck FromJson(string json)
         {
 
@@ -158,6 +204,10 @@ namespace game
                 return deck;
         }
 
+        /// <summary>
+        /// Creates serializer options for deck JSON conversions.
+        /// </summary>
+        /// <returns>Configured <see cref="JsonSerializerOptions"/>.</returns>
         private static JsonSerializerOptions CreateJsonOptions()
         {
             var options = new JsonSerializerOptions
@@ -171,6 +221,12 @@ namespace game
         }
 
         // Fisher-Yates shuffle for IList<T>
+        /// <summary>
+        /// Performs an in-place Fisher–Yates shuffle on the provided list.
+        /// </summary>
+        /// <typeparam name="T">Element type.</typeparam>
+        /// <param name="list">List to shuffle.</param>
+        /// <param name="rng">Random number generator.</param>
         private static void Shuffle<T>(IList<T> list, Random rng)
         {
             for (int i = list.Count - 1; i > 0; i--)
@@ -181,6 +237,9 @@ namespace game
             }
         }
 
+        /// <summary>
+        /// Renders the deck contents with card numbering.
+        /// </summary>
         public override string ToString()
         {
 

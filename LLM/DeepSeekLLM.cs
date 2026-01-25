@@ -7,12 +7,21 @@ using System.Threading.Tasks;
 
 namespace AI
 {
+    /// <summary>
+    /// Client wrapper for the DeepSeek chat completion API.
+    /// </summary>
     public class DeepSeekLLM : ILLM
     {
         private readonly string _endpoint;
         private readonly string _apiKey;
         private readonly HttpClient _httpClient;
 
+        /// <summary>
+        /// Creates a new DeepSeek client with the provided credentials.
+        /// </summary>
+        /// <param name="apiKey">API key used for authentication.</param>
+        /// <param name="endpoint">Optional API endpoint override.</param>
+        /// <exception cref="ArgumentNullException">Endpoint or API key is null or whitespace.</exception>
         public DeepSeekLLM(string apiKey, string endpoint = "https://api.deepseek.com/v1/chat/completions")
         {
             if (string.IsNullOrWhiteSpace(endpoint))
@@ -27,6 +36,18 @@ namespace AI
             _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_apiKey}");
         }
 
+        /// <summary>
+        /// Sends a chat completion request to DeepSeek.
+        /// </summary>
+        /// <param name="systemPrompt">System prompt establishing behavior.</param>
+        /// <param name="userPrompt">User content for the model.</param>
+        /// <param name="maxTokens">Maximum tokens to generate.</param>
+        /// <returns>Model response content.</returns>
+        /// <exception cref="ArgumentNullException">Prompts are null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">maxTokens is zero or negative.</exception>
+        /// <exception cref="NoInternetException">Network cannot reach the API.</exception>
+        /// <exception cref="TimeoutException">Request times out.</exception>
+        /// <exception cref="ApiException">API returns an error response.</exception>
         public async Task<string> SendRequestAsync(string systemPrompt, string userPrompt, uint maxTokens = 256)
         {
             if (systemPrompt == null) throw new ArgumentNullException(nameof(systemPrompt));
@@ -87,6 +108,14 @@ namespace AI
             }
         }
 
+        /// <summary>
+        /// Maps API failures to domain-specific exceptions.
+        /// </summary>
+        /// <param name="response">HTTP response to inspect.</param>
+        /// <exception cref="InvalidApiKeyException">Authentication fails.</exception>
+        /// <exception cref="NoTokensException">Subscription or quota issues.</exception>
+        /// <exception cref="RateLimitException">Request rate exceeded.</exception>
+        /// <exception cref="ApiException">Unhandled error status.</exception>
         private static async Task HandleApiErrorAsync(HttpResponseMessage response)
         {
             if (response.IsSuccessStatusCode) return;

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace AI
 {
+    /// <summary>
+    /// Lightweight client for locally hosted OpenAI-compatible chat servers.
+    /// </summary>
     public class LocalLLM : ILLM
     {
         private readonly string _endpoint;
@@ -15,6 +18,12 @@ namespace AI
         private static readonly HttpClient _sharedHttpClient = new HttpClient();
 
         
+        /// <summary>
+        /// Creates a new local LLM client using shared HTTP resources.
+        /// </summary>
+        /// <param name="endpoint">Optional endpoint override; defaults to localhost.</param>
+        /// <param name="model">Model identifier expected by the server.</param>
+        /// <param name="apiKey">Optional API key header.</param>
         public LocalLLM(string? endpoint = null, string? model = null, string? apiKey = null)
         {
             
@@ -36,6 +45,17 @@ namespace AI
             }
         }
 
+        /// <summary>
+        /// Sends a chat completion request to the local server.
+        /// </summary>
+        /// <param name="systemPrompt">System-level instructions.</param>
+        /// <param name="userPrompt">User message content.</param>
+        /// <param name="maxTokens">Maximum tokens to generate.</param>
+        /// <returns>Model response text.</returns>
+        /// <exception cref="ArgumentNullException">Prompts are null.</exception>
+        /// <exception cref="NoInternetException">Cannot reach the local server.</exception>
+        /// <exception cref="TimeoutException">Request exceeds time limit.</exception>
+        /// <exception cref="ApiException">API responds with an error status.</exception>
         public async Task<string> SendRequestAsync(string systemPrompt, string userPrompt, uint maxTokens = 256)
         {
             if (systemPrompt == null) throw new ArgumentNullException(nameof(systemPrompt));
@@ -108,6 +128,13 @@ namespace AI
             }
         }
 
+        /// <summary>
+        /// Translates HTTP error responses into domain exceptions.
+        /// </summary>
+        /// <param name="response">HTTP response to inspect.</param>
+        /// <exception cref="InvalidApiKeyException">Authentication header rejected.</exception>
+        /// <exception cref="RateLimitException">Request throttled.</exception>
+        /// <exception cref="ApiException">General server error.</exception>
         private static async Task HandleApiErrorAsync(HttpResponseMessage response)
         {
             if (response.IsSuccessStatusCode) return;
